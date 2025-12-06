@@ -2,11 +2,12 @@
 pragma solidity ^0.8.24;
 
 /// @title TreasureHunt - A simple blockchain treasure hunt game
-/// @notice Players dig on a 5x5 grid to find hidden treasure and win the prize pool
+/// @notice Players dig on a 3x3 grid. Dig costs 1 ETH, winner gets 5 ETH!
 contract TreasureHunt {
     // ============ Game Settings ============
-    uint8 public constant GRID_SIZE = 9;
-    uint256 public constant DIG_COST = 1 ether;
+    uint8 public constant GRID_SIZE = 9; // 3x3 grid
+    uint256 public constant DIG_COST = 0.001 ether; // Testnet-friendly
+    uint256 public constant PRIZE = 0.005 ether; // Testnet-friendly
 
     // ============ State ============
     address public owner;
@@ -32,6 +33,7 @@ contract TreasureHunt {
         require(position < GRID_SIZE, "Invalid position");
         require(msg.value >= DIG_COST, "Pay 0.001 ETH");
         require(!revealed[gameId][position], "Already dug");
+        require(prizePool >= PRIZE, "Pool too low"); // Ensure we can pay winner
 
         prizePool += msg.value;
         revealed[gameId][position] = true;
@@ -40,10 +42,10 @@ contract TreasureHunt {
         emit Dug(gameId, msg.sender, position, won);
 
         if (won) {
-            uint256 prize = prizePool;
-            prizePool = 0;
-            emit PrizeSent(msg.sender, prize);
-            payable(msg.sender).transfer(prize);
+            prizePool -= PRIZE;
+            emit PrizeSent(msg.sender, PRIZE);
+            (bool success, ) = payable(msg.sender).call{value: PRIZE}("");
+            require(success, "Transfer failed");
             _newGame();
         }
     }

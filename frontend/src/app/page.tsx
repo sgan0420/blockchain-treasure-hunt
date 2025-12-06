@@ -8,9 +8,14 @@ import {
   useWaitForTransactionReceipt,
   usePublicClient,
 } from "wagmi";
-import { formatEther, parseEventLogs } from "viem";
+import { formatEther } from "viem";
 import { useState, useEffect } from "react";
-import { CONTRACT_ADDRESS, CONTRACT_ABI, DIG_COST } from "@/lib/contract";
+import {
+  CONTRACT_ADDRESS,
+  CONTRACT_ABI,
+  DIG_COST,
+  PRIZE,
+} from "@/lib/contract";
 
 export default function Home() {
   const { address, isConnected } = useAccount();
@@ -124,8 +129,12 @@ export default function Home() {
 
       <div className="stats">
         <div className="stat">
+          <div className="stat-value">{formatEther(PRIZE)} ETH</div>
+          <div className="stat-label">Prize</div>
+        </div>
+        <div className="stat">
           <div className="stat-value">{formatEther(pool)} ETH</div>
-          <div className="stat-label">Prize Pool</div>
+          <div className="stat-label">Pool</div>
         </div>
         <div className="stat">
           <div className="stat-value">#{gameId.toString()}</div>
@@ -133,9 +142,7 @@ export default function Home() {
         </div>
       </div>
 
-      {won && (
-        <div className="message winner">🎉 YOU WON! Check your wallet!</div>
-      )}
+      {won && <div className="message winner">🎉 YOU WON 5 ETH!</div>}
       {digging !== null && !won && <div className="message">⛏️ Digging...</div>}
 
       <div className="grid">
@@ -170,7 +177,7 @@ export default function Home() {
           : "Connect Wallet"}
       </button>
 
-      <p className="footer">1 ETH per dig</p>
+      <p className="footer">0.001 ETH per dig • Win 0.005 ETH</p>
     </div>
   );
 }

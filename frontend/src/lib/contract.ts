@@ -64,6 +64,14 @@ export const CONTRACT_ABI = [
       { name: "amount", type: "uint256", indexed: false },
     ],
   },
+  {
+    type: "function",
+    name: "PRIZE",
+    inputs: [],
+    outputs: [{ type: "uint256" }],
+    stateMutability: "view",
+  },
 ] as const;
 
-export const DIG_COST = BigInt("1000000000000000000"); // 1 ETH in wei
+export const DIG_COST = BigInt("1000000000000000"); // 0.001 ETH in wei
+export const PRIZE = BigInt("5000000000000000"); // 0.005 ETH in wei
