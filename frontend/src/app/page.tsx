@@ -174,7 +174,7 @@ export default function Home() {
       >
         {isConnected
           ? `${address?.slice(0, 6)}...${address?.slice(-4)}`
-          : "Connect Wallet"}
+          : "Connect MetaMask"}
       </button>
 
       <p className="footer">0.001 ETH per dig • Win 0.005 ETH</p>
