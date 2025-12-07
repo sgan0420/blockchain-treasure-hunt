@@ -220,3 +220,11 @@ body {
     box-shadow: 0 0 30px var(--accent);
   }
 }
+
+.network-hint {
+  color: #f59e0b;
+  font-size: 12px;
+  margin-top: 8px;
+  opacity: 0.8;
+  text-align: center;
+}

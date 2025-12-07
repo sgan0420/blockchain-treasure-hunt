@@ -173,6 +173,7 @@ export default function Home() {
       </button>
 
       <p className="footer">0.001 ETH per dig • Win 0.005 ETH</p>
+      <p className="network-hint">⚠️ Connect to Base Sepolia network</p>
     </div>
   );
 }
