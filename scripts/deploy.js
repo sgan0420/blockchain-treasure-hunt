@@ -17,7 +17,7 @@ async function main() {
   // Seed pool (use 10 ETH locally, less on testnet)
   const isLocal =
     hre.network.name === "localhost" || hre.network.name === "hardhat";
-  const seedAmount = isLocal ? "10" : "0.1"; // 10 ETH local, 0.1 ETH testnet
+  const seedAmount = isLocal ? "10" : "0.01"; // 10 ETH local, 0.01 ETH testnet
 
   console.log(`💰 Seeding pool with ${seedAmount} ETH...`);
   await (
