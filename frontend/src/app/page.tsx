@@ -10,12 +10,7 @@ import {
 } from "wagmi";
 import { formatEther } from "viem";
 import { useState, useEffect } from "react";
-import {
-  CONTRACT_ADDRESS,
-  CONTRACT_ABI,
-  DIG_COST,
-  PRIZE,
-} from "@/lib/contract";
+import { CONTRACT_ADDRESS, CONTRACT_ABI, DIG_COST } from "@/lib/contract";
 
 export default function Home() {
   const { address, isConnected } = useAccount();
@@ -129,7 +124,7 @@ export default function Home() {
 
       <div className="stats">
         <div className="stat">
-          <div className="stat-value">{formatEther(PRIZE)} ETH</div>
+          <div className="stat-value">0.005 ETH</div>
           <div className="stat-label">Prize</div>
         </div>
         <div className="stat">
@@ -142,7 +137,7 @@ export default function Home() {
         </div>
       </div>
 
-      {won && <div className="message winner">🎉 YOU WON 5 ETH!</div>}
+      {won && <div className="message winner">🎉 YOU WON 0.005 ETH!</div>}
       {digging !== null && !won && <div className="message">⛏️ Digging...</div>}
 
       <div className="grid">
